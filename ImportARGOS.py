@@ -15,10 +15,11 @@ import sys, os, arcpy
 arcpy.env.overwriteOutput = True
 
 # Set input variables (Hard-wired)
-inputFolder = '../Data/ARGOSData'
+inputFolder = arcpy.GetParameterAsText(0)
 inputFiles = os.listdir(inputFolder)
-outputFC = '../Scratch/ARGOStrack.shp'
-outputSR = arcpy.SpatialReference(54002)
+lcFilter = arcpy.GetParameterAsText(1).split(";")
+outputFC = arcpy.GetParameterAsText(2)
+outputSR = arcpy.GetParameterAsText(3)
 
 ## Prepare a new feature class to which we'll add tracking points
 # Create an empty feature class; requires the path and name as separate parameters
